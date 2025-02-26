@@ -4,6 +4,12 @@ pipeline{
     agent any
     
     stages{
+        stage('Clean') {  // Clean before building
+    steps {
+        cleanWs()
+        echo 'Workspace cleaned before build!'
+    }
+}
         stage("Code Clone"){
             steps{
                script{
