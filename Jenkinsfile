@@ -5,7 +5,7 @@ pipeline{
 
     environment {
         SONAR_HOST_URL = 'http://localhost:9000'
-        SONAR_TOKEN = credentials('sonar-qube')
+        SONAR_TOKEN = credentials('SonarQube-Server')
         PROJECT_KEY = 'my-app-project'  // Your actual SonarQube project key
     }
 
