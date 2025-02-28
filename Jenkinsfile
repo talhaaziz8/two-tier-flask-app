@@ -2,14 +2,6 @@
 pipeline{
     
     agent any
-
-    environment {
-        SONAR_HOST_URL = 'http://localhost:9000'
-        SONAR_TOKEN = credentials('SonarQube-Server')
-        PROJECT_KEY = 'my-app-project'  // Your actual SonarQube project key
-    }
-
-
     
     stages{
         stage('Clean') {  // Clean before building
@@ -38,22 +30,6 @@ pipeline{
             }
             
         }
-        stage('Run SonarQube Analysis') {
-            steps {
-                withSonarQubeEnv('sonar-qube') {  // Uses your configured SonarQube server in Jenkins
-                    sh """
-                    docker run --rm \
-                    -e SONAR_HOST_URL=$SONAR_HOST_URL \
-                    -e SONAR_LOGIN=$SONAR_TOKEN \
-                    -v \$(pwd):/usr/src \
-                    sonarsource/sonar-scanner-cli \
-                    -Dsonar.projectKey=$PROJECT_KEY \
-                    -Dsonar.sources=.
-                    """
-                }
-            }
-        }
-        
         stage("Test"){
             steps{
                 echo "Developer / Tester tests likh ke dega..."
